@@ -1,5 +1,5 @@
 sudo ln -s /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/nginx.conf
-sudo systemctl restart nginx 
+sudo /etc/init.d/nginx restart
 sudo ln -s /home/box/web/etc/gunicorn.conf   /etc/gunicorn.d/test
-#sudo systemctl restart gunicorn
-#sudo systemctl start mysql
+sudo /etc/init.d/gunicorn restart
+sudo /etc/init.d/mysql start
