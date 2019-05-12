@@ -1,15 +1,8 @@
-import flask
-
-
-app = flask.Flask(__name__)
-
-
-@app.route('/', methods=['GET'])
-def root():
-    res = ""
-    for k, v in flask.request.args.items():
-        res += "{}={}\n".format(k, v)    
-    return res, 200
-
-if __name__ == "__main__":
-    app.run(debug=True)
+def wsgi_application(environ, start_response):
+    status = '200 OK'
+    headers = [('Content-Type','text/plain')]
+    params = environ['QUERY_STRING'].split('&')    
+    body = "\n".join(params)
+    body += "\n"    
+    start_response(status, headers)
+    return [ str.encode(body) ]
